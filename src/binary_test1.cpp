@@ -12,11 +12,11 @@ static int exec(vector<string> args)
         cout << i << " ";
     }
     cout << endl;
+    return 0;
 }
 
-ToolsOp::ToolsOption a = {
+static bool g_isok = ToolsOp::Register(ToolsOp::ToolsOption {
     .name = "test1",
     .help = help,
     .exec = exec,
-};
-ToolsOp::Register(a);
+});

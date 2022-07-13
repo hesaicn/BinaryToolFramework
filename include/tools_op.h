@@ -16,30 +16,26 @@ public:
         function<int(vector<string> args)> exec;
     };
 
-    static void Register(struct ToolsOption op)
+    string GetOpName()
     {
-        vector<ToolsOption>::iterator iter;
-        iter = find(options_.begin(), options_.end(), [op](ToolsOption &o)
-                    { return o.name == op.name; });
-        if (iter == options_.end())
-        {
-            options_.push_back(op);
-        }
+        return options_.name;
     }
 
-    static int TryMatchAndExec(const string &command, const vector<string> &args) {
-        vector<ToolsOption>::iterator iter;
-        iter = find(options_.begin(), options_.end(), [command](ToolsOption &o)
-                    { return o.name == command; });
-        if (iter == options_.end()) {
-            return -1;
-        }
-        return iter->exec(args);
+    int exec(vector<string> args) const
+    {
+        return options_.exec(args);
     }
 
-    ToolsOp() {}
-    ~ToolsOp() {};
+    static bool Register(ToolsOp op);
+
+    static vector<ToolsOp>& GetAllOps();
+
+    ToolsOp(ToolsOption op) : options_(op) {}
+
+    ~ToolsOp(){};
+
 private:
-    static vector<ToolsOption> options_;
+    ToolsOption options_;
+    static inline vector<ToolsOp> toolsOps_;
 };
 // #endif
