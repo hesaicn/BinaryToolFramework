@@ -1,5 +1,5 @@
-// #ifndef TOOLS_OP_H
-// #define TOOLS_OP_H
+#ifndef TOOLS_OP_H
+#define TOOLS_OP_H
 
 #include <functional>
 #include <algorithm>
@@ -38,4 +38,4 @@ private:
     ToolsOption options_;
     static inline vector<ToolsOp> toolsOps_;
 };
-// #endif
+#endif
