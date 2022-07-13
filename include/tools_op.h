@@ -9,9 +9,14 @@ using namespace std;
 class ToolsOp
 {
 public:
+    struct MatchRules {
+        string name;
+        bool isRepeat; 
+    };
     struct ToolsOption
     {
         string name;
+        vector<MatchRules> rules;
         function<string(void)> help;
         function<int(vector<string> args)> exec;
     };
@@ -25,7 +30,10 @@ public:
     {
         return options_.exec(args);
     }
-
+    vector<MatchRules>& GetMatchRules()
+    {
+        return options_.rules;
+    }
     static bool Register(ToolsOp op);
 
     static vector<ToolsOp>& GetAllOps();

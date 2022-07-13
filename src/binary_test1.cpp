@@ -8,15 +8,22 @@ static string help()
 
 static int exec(vector<string> args)
 {
-    for (auto &i : args) {
+    for (auto &i : args)
+    {
         cout << i << " ";
     }
     cout << endl;
     return 0;
 }
 
-static bool g_isok = ToolsOp::Register(ToolsOp::ToolsOption {
+static bool g_isok = ToolsOp::Register(ToolsOp::ToolsOption{
     .name = "test1",
+    .rules = {
+        {
+            .name = "filePath",
+            .isRepeat = true,
+        },
+    },
     .help = help,
     .exec = exec,
 });
