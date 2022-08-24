@@ -20,7 +20,7 @@ static bool g_isok = ToolsOp::Register(ToolsOp::ToolsOption{
     .name = "test1",
     .rules = {
         {
-            .name = "filePath",
+            .name = "option1",
             .isRepeat = true,
         },
     },

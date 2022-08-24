@@ -31,11 +31,14 @@ int exec(int argc, char *argv[])
             .val = send++,
         });
     }
+    vector<string> arg;
     options.emplace_back(option { nullptr, 0, nullptr, 0 });
     int opt;
-    while((opt = getopt_long(argc, argv, "", options.data(), nullptr)) != -1) {
-        cout << optarg << opt << endl;
+    while((opt = getopt_long_only(argc, argv, "", options.data(), nullptr)) != -1) {
+        // cout << optarg << opt << endl;
+        arg.emplace_back(string(optarg));
     }
+    it->exec(arg);
     return -EPERM;
 }
 int main(int argc, char *argv[])
